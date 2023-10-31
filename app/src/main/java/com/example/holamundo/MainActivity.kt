@@ -7,40 +7,31 @@ import android.os.Bundle
 import android.view.View
 import android.widget.EditText
 import android.widget.TextView
+import com.example.holamundo.Activity.Usuario
 import com.example.holamundo.Activity.thirdActivity
 
 class MainActivity : AppCompatActivity() {
     lateinit var textViewEtiqueta: TextView;
     var nombre = "";
+    var apellido = "";
     lateinit var editTextNombre: EditText;
+    lateinit var editTextApellido: EditText;
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
     }
-    override fun onStart() {
-        super.onStart()
-    }
+    fun onAltaUsuario(savedInstanceState: Bundle?) {
+        nombre = editTextNombre.text.toString();
+        apellido = editTextApellido.text.toString();
 
-    override fun onRestart() {
-        super.onRestart()
-    }
+        var usuario = Usuario(nombre,apellido)
 
-    override fun onResume() {
-        super.onResume()
-    }
-
-    override fun onPause() {
-        super.onPause()
-    }
-
-
-    override fun onDestroy() {
-        super.onDestroy()
-    }
-
-    override fun onStop() {
-        super.onStop()
+        var mi_intent = Intent(this,SecondActivity2::class.java)
+        mi_intent.putExtra("nombre",nombre)
+        mi_intent.putExtra("apellido",apellido)
+        mi_intent.putExtra("claseUsuario",usuario.getBundle())
+        startActivity(mi_intent)
     }
 
     fun onSumar(view: View){
